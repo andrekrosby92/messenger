@@ -1,6 +1,7 @@
 import json
 import uuid
 from django.http import JsonResponse
+from django.contrib.auth import authenticate, login as auth_login
 
 from .models import CustomUser
 from chat.models import Room
@@ -35,6 +36,40 @@ def user(request, user_id):
         'username': user.email,
         'full_name': user.full_name,
         'avatar': user.avatar
+    })
+
+
+def login(request):
+    data = json.loads(request.body)
+    email = data['email']
+    password = data['password']
+
+    user = authenticate(info.context, username=email, password=password)
+    auth_login(request, user)
+
+    return JsonResponse({
+        'id': user.pk,
+        'username': user.email,
+        'full_name': user.full_name,
+    })
+
+
+def register(request):
+    print('here')
+    data = json.loads(request.body)
+
+    user = CustomUser.objects.create(
+        email=data['email'],
+        password=data['password'],
+        first_name=data['first_name'],
+        last_name=data['last_name'])
+
+    auth_login(request, user)
+
+    return JsonResponse({
+        'id': user.pk,
+        'username': user.email,
+        'full_name': user.full_name,
     })
 
 

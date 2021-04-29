@@ -59,6 +59,17 @@ export default function ChatRoom() {
     setMessage('');
   }
 
+  const handleOnKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      socket.send(JSON.stringify({
+        'message': message,
+        'command': 'new_message'
+      }));
+
+      setMessage('');
+    }
+  }
+
   return (
     <div className="chat">
       <ChatUser userId={chatUserId!} />
@@ -87,6 +98,7 @@ export default function ChatRoom() {
           type="text"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
+          onKeyDown={handleOnKeyDown}
         />
         <button className="chat-message-button" onClick={handleOnClick}>
           <img src={send} alt="send" />

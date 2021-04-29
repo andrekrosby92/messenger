@@ -3,6 +3,7 @@ import ChatRoom from "./ChatRoom";
 import ChatRoomProvider from "./ChatRoomContext";
 import UserProvider from "./UserContext";
 import Sidebar from "./Sidebar";
+import Register from "./Register";
 
 export default function App() {
 
@@ -10,12 +11,19 @@ export default function App() {
     <Router>
       <UserProvider>
         <div className="app">
-          <Sidebar />
           <Switch>
-            <Route path="/chat/:room">
-              <ChatRoomProvider>
-                <ChatRoom />
-              </ChatRoomProvider>
+            <Route path="/chat">
+              <Sidebar />
+              <Switch>
+                <Route path="/chat/:room">
+                  <ChatRoomProvider>
+                    <ChatRoom />
+                  </ChatRoomProvider>
+                </Route>
+              </Switch>
+            </Route>
+            <Route path="/">
+              <Register />
             </Route>
           </Switch>
         </div>
