@@ -33,7 +33,8 @@ export default function Register() {
       })
     });
 
-    history.push('/chat')
+    history.push('/chat');
+    window.location.reload();
   }
 
   return (
