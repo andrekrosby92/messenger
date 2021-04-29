@@ -1,9 +1,8 @@
+import django
 import os
 from channels.routing import ProtocolTypeRouter, URLRouter
 from channels.auth import AuthMiddlewareStack
-from django.conf.urls import url
 from django.core.asgi import get_asgi_application
-
 from chat import routing
 
 # Fetch Django ASGI application early to ensure AppRegistry is populated
@@ -11,6 +10,7 @@ from chat import routing
 # models.
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "core.settings")
 django_asgi_app = get_asgi_application()
+django.setup()
 
 
 application = ProtocolTypeRouter({
