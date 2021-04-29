@@ -21,7 +21,7 @@ export default function UserProvider(props: any) {
 
   useEffect(() => {
     async function fetchCurrentUser() {
-      const response = await fetch(BASE_URL + '/current-user/', {
+      const response = await fetch(`${BASE_URL}/current-user/`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

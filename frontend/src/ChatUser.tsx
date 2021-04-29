@@ -17,7 +17,7 @@ export default function ChatUser(props: Props) {
 
   useEffect(() => {
     async function fetchUser() {
-      const response = await fetch(BASE_URL + '/users/' + props.userId, {
+      const response = await fetch(`${BASE_URL}/users/${props.userId}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

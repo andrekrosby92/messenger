@@ -15,7 +15,7 @@ export default function Users() {
 
   useEffect(() => {
     async function fetchUsers() {
-      const response = await fetch(BASE_URL + '/users/', {
+      const response = await fetch(`${BASE_URL}/users/`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -32,7 +32,7 @@ export default function Users() {
   }, []);
 
   const handleOnClick = async (userId: number) => {
-    await fetch(BASE_URL + '/add-contact/', {
+    await fetch(`${BASE_URL}/add-contact/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

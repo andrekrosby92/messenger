@@ -14,7 +14,7 @@ interface Props {
 
 export default function ChatRoomProvider(props: Props) {
   const { room } = useParams<Params>()
-  const socket = new WebSocket(SOCKET_BASE_PATH + '/ws/chat/' + room + '/');
+  const socket = new WebSocket(`${SOCKET_BASE_PATH}/ws/chat/${room}/`);
 
   return (
     <ChatRoomContext.Provider value={{ socket }}>

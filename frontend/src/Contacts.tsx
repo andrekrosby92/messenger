@@ -17,7 +17,7 @@ export default function Contacts() {
 
   useEffect(() => {
     async function fetchContacts() {
-      const response = await fetch(BASE_URL + '/contacts/', {
+      const response = await fetch(`${BASE_URL}/contacts/`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
